@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% block title %}
+    Product
+{% endblock %}
+{% block content %}
+    <div class=" bg-gray-300">
+        <div class="py-12">
+            <div class="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg  md:max-w-5xl">
+                <div class="md:flex ">
+                    <div class="w-full p-4 px-5 py-5">
+    
+                        <div class="md:grid md:grid-cols-3 gap-1 ">
+    
+                            <div class="col-span-2 p-5">
+                                <h1 class="text-xl font-medium uppercase title relative pb-2 text-green-500 text-center">Product Information</h1>
+                                <div class="flex flex-col justify-between items-center mt-6 pt-6">
+                                    <div class="images w-full mb-6 lg:mb-0 lg:w-3/5">
+                                        <img class="rounded-xl"
+                                             src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x20x.jpg{% endif %}"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" p-5 bg-gray-800 rounded overflow-visible h-[300px]">
+    
+                                <span class="text-2xl font-bold text-gray-100 block pb-3">{{ product.name }}</span>
+                                <span class="mt-3 text-xl font-medium text-gray-100 block">Description</span>
+                                {% if product.description %}
+                                <p class="text-sm text-gray-400">{{ product.description }}</p>
+                                {% endif %}
+                                <div class="flex justify-center pt-3 justify-between">
+                                    <label class="text-xl font-medium text-gray-100 block">Total</label>
+                                    <span class="text-white" hx-get="{% url 'hx_cart_total' %}"
+                                        hx-trigger="update-menu-cart from:body" hx-swap="innerHTML">
+                                        - NRs. {% include 'cart/partials/cart_total.html' %}</span>
+                                </div>
+                                <button
+                                    class="mt-5 h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600">
+                                    <a href="#"
+                                        hx-get="{% url 'add_to_cart' product.id %}"
+                                        hx-target="#menu-cart-button"
+                                        hx-swap = "outerHTML"
+                                    >
+                                     Add to Cart
+                                 </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

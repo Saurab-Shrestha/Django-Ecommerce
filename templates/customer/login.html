@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% block title %}
+    Log in
+{% endblock %}
+{% block content %}
+
+<div class="max-w-lg mx-auto flex flex-wrap p-6">
+
+<div class="w-full bg-gray-100 p-6 rounded-xl">
+    <h1 class="text-xl font-medium uppercase title relative pb-2 text-green-500 text-center">Log In</h1>
+    <form class="space-y-3" method="post" action=".">
+        {% csrf_token %}
+        <div>
+            <label>Username</label>
+            <input type="text" name="username" class="w-full mt-2 py-3 px-6 bg-white rounded-xl">
+        </div>
+        <div>
+            <label>Password</label>
+            <input type="password" name="password" class="w-full mt-2 py-3 px-6 bg-white rounded-xl">
+        </div>
+         {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                    <p>{{ error|escape }}</p>
+                </div>
+            {% endfor %}
+
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                    <p>{{ error|escape }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <button class="mt-5 h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600"><a
+                    type="submit"> Login</a></button>
+        </div>
+
+    </form>
+</div>
+
+</div>
+{% endblock %}

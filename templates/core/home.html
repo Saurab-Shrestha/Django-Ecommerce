@@ -1,0 +1,105 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block content %}
+
+  <!-- hero section -->
+<section class="px-2 py-32 bg-blue-50 md:px-0">
+  <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+    <div class="flex flex-wrap items-center sm:-mx-3">
+      <div class="w-full md:w-1/2 md:px-3">
+        <div class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+          <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+            <span class="block xl:inline">Home Decor</span>
+          </h1>
+          <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-2xl lg:text-3xl xl:text-4xl"><span class="block text-green-500 xl:inline">Get your dream furniture from one place.</span></h1>
+          <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">It's never been easier to find beautiful furniture for your home.</p>
+          <div class="relative flex flex-col sm:flex-row sm:space-x-4">
+            <a href="{% url 'shop' %}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center bg-green-400 text-green-900 border border-green-300 rounded-lg focus:ring-4 focus:ring-gray-100 hover:bg-green-600">
+              Shop Now
+              <span class="px-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path></svg></span>
+            </a> 
+            <a href="{% url 'contact' %}" class="flex items-center px-6 py-3 text-gray-100 bg-gray-400 rounded-md hover:bg-gray-600 hover:text-gray-300">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <div class="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
+            <img src="https://images.unsplash.com/photo-1498049860654-af1a5c566876?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- !Hero section -->
+
+<section class="max-w-full  p-10 bg-blue-50">
+    <div class="block w-full text-center mb-4">
+        <h1 class="title relative text-2xl text-bold uppercase p-1 text-green-600 ">Featured Products</h1>
+    </div>
+    <div class="flex flex-col justify-center">
+        <div class="relative m-4 flex flex-wrap mx-auto justify-center">
+
+            {% for product in products %}
+                {% include 'product/partials/product_list_item.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="block w-full text-center mb-4">
+        <a href="{% url 'shop' %}" class="inline-flex px-5 py-3 text-base font-medium text-center text-green-900 border border-green-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 hover:bg-green-400">
+            Shop More
+            <span class="px-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path></svg></span>
+        </a> 
+    </div>
+    
+</section>
+
+
+
+<section class="max-w-full p-10 bg-blue-50">
+    <div class="block w-full text-center mb-4">
+      <h1 class="title relative text-2xl text-bold uppercase p-1 text-green-600 ">Gallery</h1>
+    </div>
+    <section class="overflow-hidden text-gray-700">
+      <div class="container px-5 py-2 mx-auto lg:pt-2 lg:px-10">
+        <div class="flex flex-wrap -m-1 md:-m-2">
+          <div class="flex flex-wrap w-1/2">
+            <div class="w-1/2 p-1 md:p-2">
+              <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                src="{% static 'image/images6.jpg' %}">
+            </div>
+            <div class="w-1/2 p-1 md:p-2">
+              <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                src="{% static 'image/index.jpg' %}">
+            </div>
+            <div class="w-full p-1 md:p-2">
+              <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                src="{% static 'image/images2.jpg' %}">
+            </div>
+          </div>
+          <div class="flex flex-wrap w-1/2">
+            <div class="w-full p-1 md:p-2">
+              <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                src="{% static 'image/images3.jpg' %}">
+            </div>
+            <div class="w-1/2 p-1 md:p-2">
+              <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                src="{% static 'image/images4.jpg' %}">
+            </div>
+            <div class="w-1/2 p-1 md:p-2">
+              <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                src="{% static 'image/images5.jpg' %}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+{% endblock %}

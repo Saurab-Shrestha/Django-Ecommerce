@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Cart
+{% endblock %}
+{% block content %}
+<div class="bg-gray-300">
+    <div class="py-12">
+        <div class="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg  md:max-w-5xl">
+            <div class="md:flex ">
+                <div class="w-full p-4 px-5 py-5">
+
+                    <div class="md:grid md:grid-cols-3 gap-2 ">
+
+                        <div class="col-span-2 p-5">
+                            <div class="mb-3">
+                                <h1 class="text-xl font-medium text-green-500">Shopping Cart</h1>
+                            </div>
+                            <div class="flex flex-col mt-2">
+                                {% for item in cart %}
+                            	    {% include 'cart/partials/cart_item.html' %}
+                                {% endfor %}
+                            </div>
+							
+                            <div class="flex justify-between items-center mt-6 pt-6 border-t">
+								<div class="flex items-center">
+									<i class="fa fa-arrow-left text-sm pr-2"></i>
+									<span class="text-md  font-medium text-blue-500"><a href="{% url 'shop' %}">Continue Shopping</a></span>
+								</div>
+							
+								<div class="flex justify-center items-end">
+									<span class="text-sm font-medium text-gray-400 mr-1">Subtotal:</span>
+									<span hx-get="{% url 'hx_cart_total' %}" hx-trigger="update-menu-cart from:body"
+                                hx-swap="innerHTML">
+                                NRs. {{ cart.get_total_cost }}</</span>
+							
+								</div>
+							
+							</div>
+                        </div>
+                        <div class=" p-5 bg-gray-800 rounded overflow-visible h-[300px]">
+
+                            <span class="text-2xl font-bold text-gray-100 block pb-3">Summary</span>
+                            <div class="flex justify-center pt-3 justify-between">
+                                <label class="text-2xl font-medium text-gray-100 block">Total</label>
+                                <span class="text-white" hx-get="{% url 'hx_cart_total' %}"
+                                    hx-trigger="update-menu-cart from:body" hx-swap="innerHTML">
+                                    NRs. {{ cart.get_total_cost }}</span>
+                            </div>
+                            <button class="mt-5 h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600">
+                                <a href="{% url 'checkout' %}" > 
+                                Check Out</a></button>
+                            
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% block title %}
+    Shop
+{% endblock %}
+{% block content %}
+
+<section class="max-2-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0 bg-blue-100">
+
+    <div class="filters lg:w-1/5 md:w-1/4 md:sticky-top">
+        <div class="flex flex-col items-start m-4 p-4 rounded-xl">
+            <h3 class="mb-3 text-xl uppercase">Search</h3>
+            <form method="get" action=".">
+                <div class="flex">
+                    <input type="text" name="query" class="p-1 bg-gray-100 rounded-xl " placeholder="Search...">
+                    <button class="p-2 md:p-1 bg-gray-100 border-0 rounded-2xl hover:scale-90 overflow-hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <hr class="mt-4">
+            <h3 class="mt-3 text-xl uppercase">Category</h3>
+            <ul class="space-y-2">
+                <li><a href="{% url 'shop' %}?category={{ category.slug }}" class="{% if not active_category %}text-green-500{% else %}text-gray-500{% endif %}">All categories</a> </li>
+                {% for cat in categories %}
+                <li><a href="{% url 'shop' %}?category={{ cat.slug }}" class="{% if cat.slug == active_category %}text-gray-800{% else %}text-gray-500{% endif %}">{{ cat.name }}</a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </div>
+    <div class="w-full lg:w-4/5 md:w-3/4  -mt-4 flex items-center flex-wrap">
+        <section class="max-w-full">
+            <div class="flex flex-col justify-center">
+              <div class="relative m-4 flex flex-wrap mx-auto justify-center">
+                {% for product in products %}
+                {% include 'product/partials/product_list_item.html' %}
+                {% endfor %}
+          
+              </div>
+          
+            </div>
+          
+          </section>
+    </div>
+
+</section>
+{% endblock %}
